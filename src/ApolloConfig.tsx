@@ -56,6 +56,12 @@ cache.writeData({
     }
 });
 
+const CACHE_QUERY = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
 const client = new ApolloClient({
     cache,
     resolvers: {
@@ -82,6 +88,15 @@ const client = new ApolloClient({
                 console.log('\n', '\n', `obj = `, obj, '\n', '\n');
                 console.log('\n', '\n', `args = `, args, '\n', '\n');
                 console.log('\n', '\n', `context = `, context, '\n', '\n');
+                console.log(
+                    '\n',
+                    '\n',
+                    `context.cache.readQuery(CACHE_QUERY) = `,
+                    context.cache.readQuery({ query: CACHE_QUERY }),
+                    '\n',
+                    '\n'
+                );
+
                 console.groupEnd();
                 return 42;
             }
