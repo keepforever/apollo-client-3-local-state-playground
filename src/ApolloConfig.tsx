@@ -1,4 +1,3 @@
-import React from 'react';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 import './App.css';
 import uuid from 'uuid';
@@ -77,7 +76,9 @@ const client = new ApolloClient({
                     }
                 `;
                 const todo = cache.readFragment({ fragment, id });
+                console.log('\n', '\n', `todo = `, todo, '\n', '\n');
                 const data = { ...todo, completed: !todo.completed };
+                console.log('\n', '\n', `data = `, data, '\n', '\n');
                 cache.writeData({ id, data });
                 return null;
             }
@@ -90,10 +91,8 @@ const client = new ApolloClient({
                 console.log('\n', '\n', `context = `, context, '\n', '\n');
                 console.log(
                     '\n',
-                    '\n',
                     `context.cache.readQuery(CACHE_QUERY) = `,
                     context.cache.readQuery({ query: CACHE_QUERY }),
-                    '\n',
                     '\n'
                 );
 
