@@ -5,7 +5,8 @@ interface Props {
     foo: string;
 }
 
-const Whatever: React.FC<Props> = ({ foo }) => {
+/* An example of using the client to write to the cache directly */
+const UseClientWriteCache: React.FC<Props> = ({ foo }) => {
     const client = useApolloClient();
     return (
         <div>
@@ -21,4 +22,4 @@ const Whatever: React.FC<Props> = ({ foo }) => {
     );
 };
 
-export default Whatever;
+export default UseClientWriteCache;
